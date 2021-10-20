@@ -2,6 +2,13 @@
   (:require [clojure.pprint :refer [pprint]]
             [clojure.data.json :as json]))
 
+(defn get-headers
+  []
+  {"Content-Type" "application/json"
+   "Access-Control-Allow-Origin" "*"
+   "Access-Control-Allow-Methods" "*"})
+
+
 (defn handler! [request]
   (pprint request)
 
@@ -9,15 +16,15 @@
         body (when (:body request)
                (slurp (:body request)))]
 
-    (println (json/read-str body :key-fn keyword))
+    ;(println (json/read-str body :key-fn keyword))
 
     (cond (= uri "/to-upper-case")
           {:status  200
-           :headers {"Content-Type" "application/json"}
+           :headers (get-headers)
            :body    "{\"a\": 39}"}
 
           :else
           {:status  200
-           :headers {"Content-Type" "application/json"}
+           :headers (get-headers)
            :body    "{\"a\": 42}"}))
   )
