@@ -1,37 +1,39 @@
 (ns jepordy.server.main
   (:require [org.httpkit.server :as http-server]
-            [clojure.pprint :refer [pprint]]))
+            [jepordy.server.endpoints :refer [handler!]]))
+;; require för andra clojureberoenden
+;; import java
 
 (defonce server-atom (atom nil))
 
-(defn handler! [request]
-  (pprint request)
-  {:status  200
-   :headers {"Content-Type" "text/html"}
-   :body    "<h1>Innovation day</h1>"})
-
 (defn server-started?
   []
-  (deref server-atom))
+  (boolean (deref server-atom)))
 
+;; ! för att den förändrar statet
 (defn start-server!
   []
-  ((when-not server-started?))
-  (reset! server-atom
-          (http-server/run-server (fn [request]
-                                    (handler! request))
-                                  {:port 7000})))
+  (when-not (server-started?)
+    (reset! server-atom
+            (http-server/run-server (fn [request]
+                                      (handler! request))
+                                    {:port 7000}))))
 
 
 (defn stop-server!
   []
-  (when (server-started?))
-  (let [stop-server-fn (deref server-atom)]
-    (stop-server-fn :timeout 100)
-    reset! server-atom nil))
+  (when (server-started?)
+    (let [stop-server-fn (deref server-atom)]
+      (stop-server-fn :timeout 100)
+      (reset! server-atom nil))))
+
 
 (comment
+  (range 10)
+  (if 12 2 4)
+  (if false 2 4)
   (start-server!)
   (stop-server!)
   (server-started?)
+  (keyword "abc")
   )
