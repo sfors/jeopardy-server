@@ -1,0 +1,16 @@
+{:paths   ["src" "resources"]
+ :deps
+ {org.clojure/clojure       {:mvn/version "1.10.3"}
+  http-kit/http-kit         {:mvn/version "2.5.3"}
+  org.clojure/data.json     {:mvn/version "2.4.0"}
+  ring/ring-core            {:mvn/version "1.9.4"}
+  buddy/buddy-auth          {:mvn/version "3.0.1"}
+  ;org.clojure/java.jdbc     {:mvn/version "0.7.12"}
+  com.github.seancorfield/next.jdbc    {:mvn/version "1.2.709"}
+  org.postgresql/postgresql {:mvn/version "42.2.23"}
+  buddy/buddy-hashers       {:mvn/version "1.8.1"}
+  com.draines/postal        {:mvn/version "2.0.4"}
+  nrepl/nrepl               {:mvn/version "0.8.3"}}
+ :aliases {:depstar {:extra-deps {seancorfield/depstar {:mvn/version "2.1.278"}}}
+           :dev {:main-opts ["-m" "jeopardy-server.main.dev"]}
+           :prod {:main-opts ["-m" "jeopardy-server.main.prod"]}}}
