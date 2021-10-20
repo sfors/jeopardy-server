@@ -18,9 +18,6 @@
         body (when (:body request)
                (slurp (:body request)))]
 
-    (cond (= uri "/to-upper-case")
-          ;(println (json/read-str body :key-fn keyword))
-
           (cond
             (= uri "/get-board")
             {:status  200
@@ -37,4 +34,3 @@
              :headers (get-headers)
              :body    "{\"a\": 42}"})))
 
-  )
