@@ -1,6 +1,6 @@
 (ns jeopardy.server.main
   (:require [org.httpkit.server :as http-server]
-            [jeopardy.server.endpoints :refer [handler!]]))
+            [jeopardy.server.handler :refer [handler!]]))
 
 (defonce server-atom (atom nil))
 
