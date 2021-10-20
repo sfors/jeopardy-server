@@ -11,3 +11,7 @@
   (swap! state-atom update :users
          (fn [users]
            (dissoc users username))))
+
+(defn received-message!
+  [username data]
+  )

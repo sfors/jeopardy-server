@@ -23,6 +23,9 @@
       (stop-server-fn :timeout 100)
       (reset! server-atom nil))))
 
+(defn -main [& args]
+  (start-server!))
+
 (comment
   (start-server!)
   (stop-server!)
